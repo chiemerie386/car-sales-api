@@ -8,13 +8,7 @@ const pinoHttp = require('pino-http')
 require('dotenv').config()
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-// const {uploadFile, getFileStream} = require('./s3')
-// const multer = require('multer')
-// const upload = multer({dest: 'uploads/'})
-// const fs = require('fs')
-// const util = require('util')
-// const unlinkFile = util.promisify(fs.unlink)
-// const mongoSetup = require('./setup-mongodb');
+
 
 
 
@@ -24,7 +18,7 @@ module.exports = function main (options, cb) {
   const opts = Object.assign({
     // Default options
   }, options)
-  // function setup () {
+
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb+srv://eftd:eftd@cluster0.lnjqo.mongodb.net/ftd?retryWrites=true&w=majority');
   
@@ -36,9 +30,7 @@ module.exports = function main (options, cb) {
     db.once('open', () => {
       console.log('Connection to mongo!');
     });
-  // }
-  // mongoSetup();
-  // require('./setup-mongodb')()
+
   const logger = pino()
 
   // Server state
