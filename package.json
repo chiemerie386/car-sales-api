@@ -1,0 +1,30 @@
+{
+  "name": "car-sales-backend",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Chiemerie Anaebo <chiemerieanaebo@gmail.com>",
+  "keywords": [
+    "car sales"
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "start": "./bin/app",
+    "dev": "nodemon ./bin/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1145.0",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "http-errors": "^2.0.0",
+    "mongoose": "^6.3.4",
+    "multer": "^1.4.4-lts.1",
+    "nodemon": "^2.0.16",
+    "pino": "^7.11.0",
+    "pino-http": "^7.1.0",
+    "pino-pretty": "^7.6.1"
+  }
+}

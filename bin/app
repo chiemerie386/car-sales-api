@@ -1,0 +1,12 @@
+#! /usr/bin/env node
+'use strict'
+
+// Pass configuration to application
+require('dotenv').config()
+// const mongoSetup = require('../src/setup-mongodb');
+
+// mongoSetup()
+require('../src')({
+  port: 8000,
+  host: 'localhost'
+})
