@@ -78,7 +78,7 @@ module.exports = function main (options, cb) {
   // Alternativly, you could setup external log handling for startup
   // errors and handle them outside the node process.  I find this is
   // better because it works out of the box even in local development.
-  // require('./setup-mongodb')()
+
   require('./routes')(app, opts)
 
   // Common error handlers
