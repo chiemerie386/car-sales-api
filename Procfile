@@ -1,1 +1,1 @@
-worker: node ./bin/app.js
+web: node ./bin/app.js
