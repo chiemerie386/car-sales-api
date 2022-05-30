@@ -1,28 +1,30 @@
 'use strict'
 
 const Car = require ('./carModel')
+const express = require('express')
 const {uploadFile, getFileStream} = require('./s3')
 const multer = require('multer')
 const upload = multer({dest: 'uploads/'})
 const fs = require('fs')
 const util = require('util')
 const unlinkFile = util.promisify(fs.unlink)
+const router = express.Router();
 
-module.exports = function (app, opts) {
+// module.exports = function (app, opts) {
   // Setup routes, middleware, and handlers
-  app.get('/', (req, res) => {
+  router.get('/', (req, res) => {
     res.locals.name = 'car-sales-backend'
     res.send('jk')
   })
 
-  app.get('/cars', async(req,res)=>{
+  router.get('/cars', async(req,res)=>{
     const cars = await Car.find({})
     console.log(cars,'lkoiu')
     res.status(200).json(cars)
   })
 
 
-  app.post('/car', upload.single('image'), async(req,res) => {
+  router.post('/car', upload.single('image'), async(req,res) => {
     console.log(req.body)
     const {name, price, make, year} = req.body
     const file = req.file
@@ -35,14 +37,16 @@ module.exports = function (app, opts) {
 
     res.status(200).json(car)
   })
-  app.delete('/car/:id', async(req,res)=> {
+  router.delete('/car/:id', async(req,res)=> {
       const car  = await Car.findByIdAndDelete(req.params.id)
       res.status(200).json(car)
   })
-  app.get('/car/images/:key', (req,res)=>{
+  router.get('/car/images/:key', (req,res)=>{
     const key = req.params.key
     const readStream = getFileStream(key)
 
     readStream.pipe(res)
   })
-}
+
+  module.exports = router;
+// }
