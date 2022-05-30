@@ -1,4 +1,5 @@
 const createError = require( 'http-errors')
+require('dotenv').config()
 const express = require( 'express')
 const path = require( 'path')
 const cookieParser = require( 'cookie-parser')
@@ -8,7 +9,7 @@ const cors = require('cors');
 
 const indexRouter = require('./routes');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://eftd:eftd@cluster0.lnjqo.mongodb.net/ftd?retryWrites=true&w=majority');
+mongoose.connect(process.env.MONGO_URI);
 
 const db = mongoose.connection;
 db.on('error', () => {
